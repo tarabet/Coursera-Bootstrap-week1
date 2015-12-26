@@ -9,11 +9,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head
          content must come *after* these tags -->
     <title>Ristorante Con Fusion</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/mystyles.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,7 +63,7 @@
                     <li><a href="contactus.html"><i class="fa fa-envelope-o"></i>Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal">
+                    <li><a onclick="loginToggle()">
                         <span class="glyphicon glyphicon-log-in"></span>
                         Login
                         </a>
@@ -78,7 +78,7 @@
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" onclick="loginToggle()">&times;</button>
                     <h4 class="modal-title">Login </h4>
                 </div>
                 <div class="modal-body">
@@ -98,7 +98,7 @@
                             </label>
                         </div>
                             <button type="submit" class="btn btn-info btn-sm">Sign in</button>
-                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default btn-sm" onclick="loginToggle()">Cancel</button>
                     </form>
 
                 </div>
@@ -110,7 +110,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" onclick="reserveToggle()">&times;</button>
                     <h4 class="modal-title">Reserve Table</h4>
                 </div>
                 <div class="modal-body">
@@ -157,7 +157,7 @@
                             <label class="col-xs-12 col-sm-2"></label>
                             <div class="col-xs-12 col-sm-10">
                                 <a class="btn btn-primary">Reserve</a>
-                                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-default btn-sm" onclick="reserveToggle()">Cancel</button>
                             </div>
                         </div>
                         <div class="alert alert-warning alert-dismissible" role="alert">
@@ -185,7 +185,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-2">
                     <p style="padding:40px;"></p>
-                    <a type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#reserveModal">Reserve Table</a>
+                    <a type="button" class="btn btn-warning btn-block" onclick="reserveToggle()">Reserve Table</a>
                 </div>
             </div>
         </div>
@@ -384,12 +384,15 @@
         </div>
     </footer>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script>
+
+        var loginModal = $('#loginModal');
+        var reserveModal = $("#reserveModal");
+
         $(document).ready(function(){
             $("#mycarousel").carousel( { interval: 2000 } );
             $("#carousel-pause").click(function(){
@@ -399,6 +402,19 @@
                 $("#mycarousel").carousel('cycle');
             });
         });
+
+        function loginToggle() {
+            modalToggle(loginModal);
+        }
+
+        function reserveToggle() {
+            modalToggle(reserveModal);
+        }
+
+        function modalToggle(elem) {
+            elem.modal('toggle');
+        }
+
     </script>
 
 </body>
